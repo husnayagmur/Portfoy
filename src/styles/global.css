@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
+
+::-webkit-scrollbar {
+    display: none;
+  }
+  
+  html {
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+  }
+  
+  .h-screen {
+    height: 100vh;
+    overflow-y: scroll;
+  }
+  
