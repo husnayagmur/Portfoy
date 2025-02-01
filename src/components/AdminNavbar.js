@@ -26,30 +26,30 @@ const AdminNavbar = () => {
               <FaInfoCircle size={22} className="text-red-400" />
               <span className="text-left">Hakkımda Yönetimi</span>
             </Link>
-            <Link href="/admin/contact-management" className="flex items-center gap-3 p-3 rounded-lg hover:bg-darkdark-gray hover:text-white transition">
+            <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-darkdark-gray hover:text-white transition cursor-pointer">
               <FaEnvelope size={22} className="text-red-400" />
               <span className="text-left">İletişim Yönetimi</span>
-            </Link>
-            <Link href="/admin" className="flex items-center gap-3 p-3 rounded-lg hover:bg-darkdark-gray hover:text-white transition">
+            </div>
+            <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-darkdark-gray hover:text-white transition cursor-pointer">
               <FaUsers size={22} className="text-red-400" />
               <span className="text-left">Kullanıcı Yönetimi</span>
-            </Link>
-            <Link href="/admin" className="flex items-center gap-3 p-3 rounded-lg hover:bg-darkdark-gray hover:text-white transition">
+            </div>
+            <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-darkdark-gray hover:text-white transition cursor-pointer">
               <FaBell size={22} className="text-red-400" />
               <span className="text-left">Bildirimler</span>
-            </Link>
-            <Link href="/admin" className="flex items-center gap-3 p-3 rounded-lg hover:bg-darkdark-gray hover:text-white transition">
+            </div>
+            <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-darkdark-gray hover:text-white transition cursor-pointer">
               <FaCog size={22} className="text-red-400" />
               <span className="text-left">Ayarlar</span>
-            </Link>
-            <Link href="/admin" className="flex items-center gap-3 p-3 rounded-lg hover:bg-darkdark-gray hover:text-white transition">
+            </div>
+            <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-darkdark-gray hover:text-white transition cursor-pointer">
               <FaHeadset size={22} className="text-red-400" />
               <span className="text-left">Destek</span>
-            </Link>
-            <Link href="/admin" className="flex items-center gap-3 p-3 rounded-lg hover:bg-darkdark-gray hover:text-white transition">
+            </div>
+            <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-darkdark-gray hover:text-white transition cursor-pointer">
               <FaSignOutAlt size={22} className="text-red-400" />
               <span className="text-left">Çıkış Yap</span>
-            </Link>
+            </div>
           </nav>
         </div>
     

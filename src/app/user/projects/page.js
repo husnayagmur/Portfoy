@@ -1,8 +1,9 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation"; // Yeni ekleme
+
 export const items = [
   {
     imageSrc: "/images/pizza-web.jpg",
@@ -42,15 +43,14 @@ export const items = [
   {
     imageSrc: "/images/kisisel-web.jpg",
     alt: "Kişisel Web Image",
-    description: "Benim hakkımda bilgiler, projelerim ve iletişim bilgilerim gibi çeşitli içerikleri şık bir tasarım ile sunarak ziyaretçilere kendimi tanıtmamı sağlayan bir platformdur.",
+    description: "Bilgilerim, projelerim ve iletişim bilgilerim gibi çeşitli içerikleri şık bir tasarım ile  ziyaretçilere kendimi tanıtmamı sağlayan bir platformdur.",
     category: "Web Tasarımı",
     slug: "kisisel-web",
   },
-  
 ];
 
 const Page = () => {
- 
+  const router = useRouter(); // useRouter hook'unu kullan
   const categories = ["Tüm Projeler", ...new Set(items.map((item) => item.category))];
   const [selectedCategory, setSelectedCategory] = useState("Tüm Projeler");
 
@@ -66,10 +66,9 @@ const Page = () => {
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`lg:px-6 md:px-6 px-3 py-2 border rounded-lg transition lg:text-[18px] md:text-[18px] text-xs ${selectedCategory === category
-                  ? "bg-gray-800 text-white"
-                  : "bg-white hover:bg-gray-200"
-                }`}
+              className={`lg:px-6 md:px-6 px-3 py-2 border rounded-lg transition lg:text-[18px] md:text-[18px] text-xs ${
+                selectedCategory === category ? "bg-gray-800 text-white" : "bg-white hover:bg-gray-200"
+              }`}
             >
               {category}
             </button>
@@ -85,6 +84,7 @@ const Page = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.5, ease: "easeInOut", delay: index * 0.2 }}
+                onClick={() => router.push(`/user/projects/${item.slug}`)} // Yönlendirme burada
               >
                 <Image
                   src={item.imageSrc}
@@ -94,9 +94,7 @@ const Page = () => {
                   className="rounded-lg transition-all duration-300 group-hover:opacity-40"
                 />
                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 transform translate-y-4 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
-                  <Link href={`user/projects/${item.slug}`}>
-                    <span className="text-sm font-thin text-gray">{item.description}</span>
-                  </Link>
+                  <span className="text-sm font-thin text-gray">{item.description}</span>
                 </div>
               </motion.div>
             ))}
