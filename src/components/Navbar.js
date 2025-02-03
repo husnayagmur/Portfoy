@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <div className=" lg:static lg:h-full lg:w-1/6 lg:border-r lg:border-t lg:border-b md:border-b-2 border-b-2 lg:border-gray-300 text-light-light-gray lg:flex lg:flex-col lg:justify-center lg:items-center lg:space-y-8 lg:font-lora lg:border-green lg:bg-darkdark-gray lg:bg-opacity-50 
     md:fixed md:top-0 md:w-full md:h-20 md:flex md:flex-row md:justify-around md:items-center md:bg-black
-    fixed top-0 w-full h-16 flex flex-row justify-around items-center bg-black">
+    fixed top-0 w-full  z-10 h-16 flex flex-row justify-around items-center bg-black">
 
       <motion.div
         className="py-5 flex justify-center items-center lg:space-x-2 md:space-x-2 relativ hover:bg-opacity-35"

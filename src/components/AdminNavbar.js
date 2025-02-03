@@ -1,7 +1,6 @@
 "use client"
 import Link from 'next/link';
-import { FaChartPie, FaProjectDiagram, FaInfoCircle, FaEnvelope, FaUsers, FaBell, FaSearch, FaCog, FaHeadset, FaSignOutAlt, FaKey } from 'react-icons/fa';
-
+import { FaChartPie, FaProjectDiagram, FaInfoCircle, FaEnvelope, FaUsers, FaBell, FaSearch, FaCog, FaHeadset, FaSignOutAlt } from 'react-icons/fa';
 const AdminNavbar = () => {
     return (
         <div className="max-w-7xl mx-auto h-full w-1/6 bg-gray-900 text-white flex flex-col shadow-xl items-center justify-center fixed border-r-2 border-yellow bg-black">
@@ -26,14 +25,14 @@ const AdminNavbar = () => {
               <FaInfoCircle size={22} className="text-red-400" />
               <span className="text-left">Hakkımda Yönetimi</span>
             </Link>
-            <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-darkdark-gray hover:text-white transition cursor-pointer">
+            <Link href="/admin/contact-management" className="flex items-center gap-3 p-3 rounded-lg hover:bg-darkdark-gray hover:text-white transition">
               <FaEnvelope size={22} className="text-red-400" />
               <span className="text-left">İletişim Yönetimi</span>
-            </div>
-            <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-darkdark-gray hover:text-white transition cursor-pointer">
+            </Link>
+            <Link href="/admin/user-management" className="flex items-center gap-3 p-3 rounded-lg hover:bg-darkdark-gray hover:text-white transition">
               <FaUsers size={22} className="text-red-400" />
               <span className="text-left">Kullanıcı Yönetimi</span>
-            </div>
+            </Link>
             <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-darkdark-gray hover:text-white transition cursor-pointer">
               <FaBell size={22} className="text-red-400" />
               <span className="text-left">Bildirimler</span>
@@ -46,10 +45,10 @@ const AdminNavbar = () => {
               <FaHeadset size={22} className="text-red-400" />
               <span className="text-left">Destek</span>
             </div>
-            <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-darkdark-gray hover:text-white transition cursor-pointer">
+            <Link href="/" className="flex items-center gap-3 p-3 rounded-lg hover:bg-darkdark-gray hover:text-white transition">
               <FaSignOutAlt size={22} className="text-red-400" />
               <span className="text-left">Çıkış Yap</span>
-            </div>
+            </Link>
           </nav>
         </div>
     

@@ -1,6 +1,10 @@
 "use client"
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 export const skills = [
   { name: "Python", value: 35 },
   { name: "JavaScript", value: 50 },
@@ -33,7 +37,7 @@ const certificates = [
     title: "Python Programlama Sertifikası",
     description: "Python dilinde temel programlama konuları ve basit algoritmalar üzerine eğitim alındı.",
     image: "/images/python.jpg",
-  },  
+  },
   {
     title: "Veri Bilimi ve Yapay Zekâya Giriş Sertifikası",
     description: "Veri analizi, makine öğrenimi, veri görselleştirme ve temel yapay zekâ algoritmaları hakkında temel bilgiler edinildi.",
@@ -41,11 +45,21 @@ const certificates = [
   }
 ];
 export default function Home() {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    adaptiveHeight: true,
+  };
   return (
-    <div className=" bg-gray-900 max-w-7xl w-full h-full mx-auto grid grid-row-2 gap-5">
+    <div className=" bg-gray-900 max-w-7xl w-full h-full mx-auto grid lg:grid-row-2 md:grid-row-3 grid-row-5 lg:gap-5 md:gap-3 ">
       <div className="text-light-light-gray text-center bg-black">
-        <h1 className="text-2xl font-lora font-thin">BECERİLERİM</h1>
-        <div className="grid lg:grid-cols-5 grid-cols-5 gap-4 py-2">
+        <h1 className="text-2xl font-lora font-semibold lg:py-0 md:py-6">BECERİLERİM</h1>
+        <div className="grid lg:grid-cols-5 md:grid-cols-4 grid-cols-3 lg:gap-4 md:gap-3 lg:py-2 md:py-4">
           {skills.map((skill, index) => (
             <motion.div
               key={index}
@@ -54,7 +68,6 @@ export default function Home() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: index * 0.2, duration: 0.3 }}
             >
-              {/* Dairesel Gösterge */}
               <motion.div
                 className="relative"
                 style={{ width: 120, height: 100 }}
@@ -82,7 +95,7 @@ export default function Home() {
                     strokeDasharray="94.24777960769379"
                     strokeDashoffset={94.24777960769379 - (94.24777960769379 * skill.value) / 100}
                     initial={{ strokeDashoffset: 94.24777960769379 }}
-                    animate={{ strokeDashoffset: 94.24777960769379 - (94.24777960769379 * skill.value) / 100 }} 
+                    animate={{ strokeDashoffset: 94.24777960769379 - (94.24777960769379 * skill.value) / 100 }}
                     transition={{ duration: 2, delay: 0.5 }}
                   />
                 </svg>
@@ -103,31 +116,31 @@ export default function Home() {
             </motion.div>
           ))}
         </div>
-        <div className="bg-black px-4 ">
-
-          <div className="text-light-light-gray text-2xl font-lora font-thin text-center py-3 ">
+        <div className="bg-black px-4">
+          <div className="text-light-light-gray text-2xl font-lora font-semibold text-center lg:py-4 md:py-8 py-6">
             SERTİFİKALARIM
           </div>
-
-          <div className="grid lg:grid-cols-5 md:grid-cols-2 gap-6 lg:pr-2 pb-5 h-full ">
-            {certificates.map((cert, index) => (
-              <div
-                key={index}
-                className="bg-gradient-to-r from-yellow rounded-lg shadow-lg transform hover:scale-110 hover:duration-300 lg:px-1 py-1 opacity-70 hover:opacity-100 transition-opacity "
-              >
-                <Image
-                  src={cert.image}
-                  alt={cert.title}
-                  width={200}
-                  height={200}
-                  className="opacity-80 p-2"
-                />
-                <div>
-                <h3 className="text-sm lg:py-1 font-semibold text-gray ">{cert.title}</h3>
-                <p className="text-xs text-center text-black ">{cert.description}</p>
+          <div className="lg:max-w-4xl md:max-w-2xl max-w-xs mx-auto pb-4">
+            <Slider {...settings}>
+              {certificates.map((cert, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col items-center text-center p-4 bg-gradient-to-r from-black via-yellow to-black rounded-lg "
+                >
+                  <div className="flex justify-center w-full">
+                    <Image
+                      src={cert.image}
+                      alt={cert.title}
+                      width={200}
+                      height={150}
+                      className="rounded-lg shadow-lg"
+                    />
+                  </div>
+                  <h3 className="lg:text-lg md:text-lg text-xl font-semibold text-black mt-2">{cert.title}</h3>
+                  <p className="text-sm text-darkdark-gray px-20 mt-2 lg:block md:block hidden">{cert.description}</p>
                 </div>
-              </div>
-            ))}
+              ))}
+            </Slider>
           </div>
         </div>
       </div>
