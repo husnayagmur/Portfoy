@@ -13,10 +13,10 @@ const AboutManagement = () => {
     Hedefim, yalnızca bir yazılımcı olarak değil, aynı zamanda teknolojiyle topluma değer katan bir birey olarak kendimi geliştirmek. 
     Gelecekte daha büyük projelerde yer alarak, bilgi ve deneyimlerimi faydalı ürünlere dönüştürmeyi amaçlıyorum.
   `);
-  
+
   const [editingText, setEditingText] = useState(false);
-  const [skills, setSkills] = useState(initialSkills); 
-  const [editingSkill, setEditingSkill] = useState(null); 
+  const [skills, setSkills] = useState(initialSkills);
+  const [editingSkill, setEditingSkill] = useState(null);
 
   const handleAboutTextChange = (e) => setAboutText(e.target.value);
   const toggleEditText = () => setEditingText(!editingText);
@@ -38,19 +38,18 @@ const AboutManagement = () => {
   const addNewSkill = () => {
     const newSkill = { id: skills.length + 1, name: '', value: 0 };
     setSkills([...skills, newSkill]);
-    setEditingSkill(newSkill.id); 
+    setEditingSkill(newSkill.id);
   };
 
   const deleteSkill = (skillId) => {
     const updatedSkills = skills.filter(skill => skill.id !== skillId);
-    setSkills(updatedSkills); 
+    setSkills(updatedSkills);
   };
 
   return (
-    <div className="h-screen bg-gray-900 text-dark-gray p-6 overflow-y-scroll">
+    <div className="min-h-screen bg-gray-900 text-dark-gray lg:p-6 py-5 px-2 overflow-y-scroll z-0">
       <div className="mb-6">
-        <h2 className="text-xl font-medium mb-3 text-white">Hakkımda Yönetimi</h2>
-        <div className="relative bg-gray-800  p-5 rounded-lg shadow-lg border border-gray-700">
+        <div className="relative bg-gray-800  p-5 rounded-lg shadow-lg border border-gray-700  ">
           {editingText ? (
             <textarea
               value={aboutText}
@@ -59,7 +58,7 @@ const AboutManagement = () => {
               className="w-full p-3 bg-gray-700 text-gray-300 border border-gray-600 rounded-lg focus:outline-none focus:ring-1 focus:ring-orange-500 resize-none"
             />
           ) : (
-            <p className="text-gray-300 text-lg italic leading-relaxed">
+            <p className="text-gray-300 lg:text-lg md:text-[15px] text-[14px] italic leading-relaxed">
               {aboutText}
             </p>
           )}
@@ -80,32 +79,33 @@ const AboutManagement = () => {
                 type="text"
                 value={skill.name}
                 onChange={(e) => handleSkillNameChange(e, skill.id)}
-                disabled={editingSkill !== skill.id} 
-                className="w-3/4 p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-500"
+                disabled={editingSkill !== skill.id}
+                className={`w-3/4 p-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-500 ${editingSkill === skill.id ? 'text-black' : 'text-white'}`}
               />
               <input
                 type="number"
                 value={skill.value}
                 onChange={(e) => handleSkillChange(e, skill.id)}
-                disabled={editingSkill !== skill.id} 
-                className="w-1/4 p-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-500"
+                disabled={editingSkill !== skill.id}
+                className={`w-1/4 p-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-500 ${editingSkill === skill.id ? 'text-black' : 'text-white'}`}
               />
+
               <div className="flex space-x-2">
                 {editingSkill === skill.id ? (
                   <FaCheckCircle
-                    onClick={() => setEditingSkill(null)} 
+                    onClick={() => setEditingSkill(null)}
                     className="text-green-600 hover:text-green-500 cursor-pointer"
                     size={18}
                   />
                 ) : (
                   <FaPen
-                    onClick={() => setEditingSkill(skill.id)} 
+                    onClick={() => setEditingSkill(skill.id)}
                     className="text-gray hover:text-light-green cursor-pointer"
                     size={18}
                   />
                 )}
                 <FaTrash
-                  onClick={() => deleteSkill(skill.id)} 
+                  onClick={() => deleteSkill(skill.id)}
                   className="text-red-600 hover:text-red-500 cursor-pointer"
                   size={18}
                 />

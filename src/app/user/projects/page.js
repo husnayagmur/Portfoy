@@ -6,51 +6,57 @@ import { useRouter } from "next/navigation"; // Yeni ekleme
 
 export const items = [
   {
-    imageSrc: "/images/pizza-web.jpg",
-    alt: "Pizza Image",
-    description: "Kullanıcıların kolayca menüye göz atıp sipariş verebileceği, modern ve kullanıcı dostu bir tasarıma sahip bir platformdur.",
-    category: "Web Tasarımı",
-    slug: "pizza-web",
+    "imageSrc": "/images/pizza-web.jpg",
+    "alt": "Pizza Image",
+    "description": "Kullanıcıların kolayca menüye göz atıp sipariş verebileceği, modern ve kullanıcı dostu bir tasarıma sahip bir platformdur.",
+    "category": "Web Tasarımı",
+    "slug": "pizza-menu-platform",
+    "id": "1"
   },
   {
-    imageSrc: "/images/currency-app.jpg",
-    alt: "Currency App Image",
-    description: "Kullanıcıların döviz kurları hakkında hızlı ve doğru bilgilere ulaşmasını sağlayan pratik bir mobil uygulamadır.",
-    category: "Mobil Uygulama",
-    slug: "currency-app",
+    "imageSrc": "/images/currency-app.jpg",
+    "alt": "Currency App Image",
+    "description": "Kullanıcıların döviz kurları hakkında hızlı ve doğru bilgilere ulaşmasını sağlayan pratik bir mobil uygulamadır.",
+    "category": "Mobil Uygulama",
+    "slug": "doviz-takip-uygulamasi",
+    "id": "2"
   },
   {
-    imageSrc: "/images/movie-app.jpg",
-    alt: "Movie App Image",
-    description: "Kullanıcıların filmleri açıklamalarıyla birlikte keşfederek izlemek istedikleri filmleri kolayca bulabilecekleri bir uygulamadır.",
-    category: "Mobil Uygulama",
-    slug: "movie-app",
+    "imageSrc": "/images/movie-app.jpg",
+    "alt": "Movie App Image",
+    "description": "Kullanıcıların filmleri açıklamalarıyla birlikte keşfederek izlemek istedikleri filmleri kolayca bulabilecekleri bir uygulamadır.",
+    "category": "Mobil Uygulama",
+    "slug": "film-kesfet-uygulamasi",
+    "id": "3"
   },
   {
-    imageSrc: "/images/train-ticket-app.jpg",
-    alt: "Train Ticket App Image",
-    description: "Kullanıcıların kolayca tren biletlerini arayarak satın alabilecekleri, pratik ve kullanıcı dostu bir mobil uygulamadır.",
-    category: "Mobil Uygulama",
-    slug: "train-ticket-app",
+    "imageSrc": "/images/train-ticket-app.jpg",
+    "alt": "Train Ticket App Image",
+    "description": "Kullanıcıların kolayca tren biletlerini arayarak satın alabilecekleri, pratik ve kullanıcı dostu bir mobil uygulamadır.",
+    "category": "Mobil Uygulama",
+    "slug": "tren-bilet-satis",
+    "id": "4"
   },
   {
-    imageSrc: "/images/movie-app2.jpg",
-    alt: "Movie App Image",
-    description: "Kullanıcıların filmleri açıklamalarıyla birlikte keşfederek izlemek istedikleri filmleri kolayca bulabilecekleri bir uygulamadır.",
-    category: "Mobil Uygulama",
-    slug: "movie-app2",
+    "imageSrc": "/images/movie-app2.jpg",
+    "alt": "Movie App Image",
+    "description": "Kullanıcıların filmleri açıklamalarıyla birlikte keşfederek izlemek istedikleri filmleri kolayca bulabilecekleri bir uygulamadır.",
+    "category": "Mobil Uygulama",
+    "slug": "film-oneri-platformu",
+    "id": "5"
   },
   {
-    imageSrc: "/images/kisisel-web.jpg",
-    alt: "Kişisel Web Image",
-    description: "Bilgilerim, projelerim ve iletişim bilgilerim gibi çeşitli içerikleri şık bir tasarım ile  ziyaretçilere kendimi tanıtmamı sağlayan bir platformdur.",
-    category: "Web Tasarımı",
-    slug: "kisisel-web",
-  },
+    "imageSrc": "/images/kisisel-web.jpg",
+    "alt": "Kişisel Web Image",
+    "description": "Bilgilerim, projelerim ve iletişim bilgilerim gibi çeşitli içerikleri şık bir tasarım ile ziyaretçilere kendimi tanıtmamı sağlayan bir platformdur.",
+    "category": "Web Tasarımı",
+    "slug": "kisisel-portfoy-web",
+    "id": "6"
+  }
 ];
 
 const Page = () => {
-  const router = useRouter(); // useRouter hook'unu kullan
+  const router = useRouter();
   const categories = ["Tüm Projeler", ...new Set(items.map((item) => item.category))];
   const [selectedCategory, setSelectedCategory] = useState("Tüm Projeler");
 
@@ -84,7 +90,7 @@ const Page = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.5, ease: "easeInOut", delay: index * 0.2 }}
-                onClick={() => router.push(`/user/projects/${item.slug}`)} // Yönlendirme burada
+                onClick={() => router.push(`/user/projects/${item.slug}`)} 
               >
                 <Image
                   src={item.imageSrc}

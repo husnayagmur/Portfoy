@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
           <AdminNavbar/>
           <AnimatePresence mode="wait">
           <motion.div
-          className="flex-1 ml-64"
+          className="flex-1 lg:ml-64  lg:mt-0 mt-10 md:mt-14"
           initial={{ x: "100%" }} 
           animate={{ x: 0 }} 
           exit={{ x: "-100%" }}

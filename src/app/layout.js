@@ -10,7 +10,7 @@ export default function RootLayout({ children }) {
   }
   return (
     <html lang="en">
-      <body className="lg:flex flex flex-row h-screen  overflow-hidden lg:py-10 bg-black" style={{
+      <body className="lg:flex flex flex-row h-screen  overflow-hidden lg:py-10 bg-black mx-auto" style={{
           backgroundImage: "url('/images/bg-Image.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
         }}>
         <Navbar className='lg:mb-0' />
         <motion.div
-          className="flex-1 lg:ml-20 lg:mt-0 mt-20"
+          className="flex-1 lg:ml-20 lg:mt-0 mt-20 "
           initial={{ x: "100%" }} 
           animate={{ x: 0 }} 
           exit={{ x: "-100%" }}

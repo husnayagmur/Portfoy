@@ -42,17 +42,16 @@ const Page = () => {
       exit={{ opacity: 0, x: -100 }}
       transition={{ duration: 1 }}
     >
-      <div className="flex-1 flex flex-col h-full text-light-light-gray items-end space-y-4 font-lora">
+      <div className="flex-1 flex flex-col h-full text-light-light-gray items-end space-y-4  font-lora max-w-7xl mx-auto">
         <div className="flex justify-between w-full flex-row">
           <div className="w-full">
-            <h1 className="lg:text-5xl md:text-4xl text-2xl font-semibold lg:py-8 py-3 md:py-6 text-center">
+            <h1 className=" md:text-5xl text-2xl font-semibold lg:py-8 py-2 md:py-6 text-center">
               Merhaba, ben Hüsna Yağmur.
             </h1>
-            <p className="lg:text-[20px] md:text-[20px] text-[14px] font-medium text-left md:px-6 px-1 lg:px-4">
+            <p className="lg:text-[20px] md:text-[23px] text-[13px] font-medium text-left md:px-6 px-2 lg:px-4">
               Yazılım geliştirme alanında kendimi geliştirmeye hevesli, yenilikçi çözümler üretmeye odaklanan bir yazılımcıyım. Necmettin Erbakan Üniversitesi'nde bilgisayar mühendisliği eğitimi alıyor, bilgi ve becerilerimi sürekli olarak genişletmeye özen gösteriyorum. Web geliştirme alanına ilgi duyuyor, modern teknolojileri takip ederek kullanıcı dostu ve sürdürülebilir projeler geliştirmeyi hedefliyorum.
             </p>
-          
-            <p className="lg:text-[20px] md:text-[20px] text-[12px] font-medium text-left md:px-6 px-1 lg:px-4">
+            <p className="lg:text-[20px] md:text-[23px] text-[13px] font-medium text-left md:px-6 px-2 lg:px-4">
               Sürekli öğrenme prensibiyle her gün yeni bilgiler edinerek projelerimde daha etkili çözümler üretiyorum. Hedefim, yalnızca bir yazılımcı olarak değil, aynı zamanda teknolojiyle topluma değer katan bir birey olarak kendimi geliştirmek. Gelecekte daha büyük projelerde yer alarak, bilgi ve deneyimlerimi faydalı ürünlere dönüştürmeyi amaçlıyorum.
             </p>
             <Link href={"/user/about"}>
@@ -63,7 +62,7 @@ const Page = () => {
           </div>
           <div>
             <Image
-              src="/images/ben.png"
+              src="/images/husnaY.png"
               alt="My image"
               width={450}
               height={450}
@@ -71,7 +70,7 @@ const Page = () => {
             />
           </div>
         </div>
-        <div className='grid lg:grid-cols-4 md:grid-cols-2  lg:gap-3 md:gap-4 gap-2 w-full lg:2/4 md:h-2/5 h-2/5 px-2 md:px-7'>
+        <div className='grid lg:grid-cols-4 md:grid-cols-2  lg:gap-3 md:gap-4 gap-2 w-full lg:h-2/4 md:h-2/6 h-3/6 px-2 md:px-7'>
           {projects.map((project, index) => (
             <motion.div
               key={index}
@@ -98,16 +97,16 @@ const Page = () => {
               >
                 <div className="absolute inset-0 bg-black opacity-50"></div>
                 <motion.div
-                  className="absolute inset-0 flex flex-col lg:pb-4 md:pb-8 pb-8 bg-black opacity-0 text-medium-gray items-center justify-center"
+                  className="absolute inset-0 flex flex-col lg:pb-4  bg-black opacity-0 text-medium-gray items-center justify-center"
                   whileHover={{ opacity: 0.8 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <h1 className="font-semibold py-1">{project.title}</h1>
-                  <p className='font-thin text-xs text-center lg:block hidden'>{project.description}</p>
+                  <h1 className="font-semibold lg:py-1 md:text-md text-sm">{project.title}</h1>
+                  <p className='font-thin text-xs text-center md:block hidden'>{project.description}</p>
                 </motion.div>
-                <div className="absolute bottom-0 w-full bg-darkdark-gray h-8 border-white text-white flex items-center justify-end px-1 text-xs">
-                  <Link href={project.link}>Detaylar</Link>
-                  <TbArrowRightDashed size={18} className="mt-1 pl-1" />
+                <div className="absolute bottom-0 w-full bg-darkdark-gray lg:h-8 md:h-8 h-3 border-white text-white flex items-center justify-end px-1 text-xs">
+                  <Link href={project.link} className='lg:text-[13px] md:text-[11px] text-[9px]'>Detaylar</Link>
+                  <TbArrowRightDashed className="mt-1 pl-1 lg:text-[18px] md:text-[15px] text-[13px]" />
                 </div>
               </div>
             </motion.div>

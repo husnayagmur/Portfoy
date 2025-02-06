@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import { useState } from "react";
 import { FaUserEdit, FaTrash, FaUserPlus, FaSearch } from "react-icons/fa";
 
@@ -10,25 +10,61 @@ export default function UserManagement() {
   ]);
   const [search, setSearch] = useState("");
   const [newUser, setNewUser] = useState({ name: "", email: "", role: "User" });
+  const [editingUser, setEditingUser] = useState(null);
+  const [emailError, setEmailError] = useState("");
 
   const deleteUser = (id) => {
     setUsers(users.filter((user) => user.id !== id));
   };
 
   const addUser = () => {
-    if (newUser.name && newUser.email) {
-      setUsers([...users, { id: users.length + 1, ...newUser }]);
-      setNewUser({ name: "", email: "", role: "User" });
+    if (!newUser.name || !newUser.email) {
+      setEmailError("Lütfen tüm alanları doldurun.");
+      return;
     }
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(newUser.email)) {
+      setEmailError("Geçerli bir e-posta adresi girin.");
+      return;
+    }
+
+    setUsers([...users, { id: users.length + 1, ...newUser }]);
+    setNewUser({ name: "", email: "", role: "User" });
+    setEmailError("");
+  };
+
+  const editUser = (user) => {
+    setEditingUser(user);
+    setNewUser({ name: user.name, email: user.email, role: user.role });
+  };
+
+  const updateUser = () => {
+    if (!newUser.name || !newUser.email) {
+      setEmailError("Lütfen tüm alanları doldurun.");
+      return;
+    }
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(newUser.email)) {
+      setEmailError("Geçerli bir e-posta adresi girin.");
+      return;
+    }
+
+    setUsers(
+      users.map((user) =>
+        user.id === editingUser.id ? { ...user, ...newUser } : user
+      )
+    );
+    setEditingUser(null);
+    setNewUser({ name: "", email: "", role: "User" });
+    setEmailError("");
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-6">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-semibold">Kullanıcı Yönetimi</h1>
-      </div>
-
-      <div className="mb-4 flex items-center bg-gray-800 p-3 rounded-lg border border-gray-700">
+    <div className="min-h-screen bg-gray-900 text-white px-2 lg:py-1 lg:px-5">
+      <div className="flex justify-between items-center mb-6"></div>
+      <div className="mb-4 flex items-center bg-gray-800 p-2 rounded-lg border border-gray-700">
         <FaSearch className="text-gray-400 mr-2" />
         <input
           type="text"
@@ -38,11 +74,11 @@ export default function UserManagement() {
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>
-
-      {/* Kullanıcı Ekleme Alanı */}
-      <div className="bg-gray-800 p-4 rounded-lg mb-6">
-        <h2 className="text-xl mb-3">Yeni Kullanıcı Ekle</h2>
-        <div className="flex gap-3">
+      <div className="bg-gray-800 lg:p-4 py-4 rounded-lg mb-6">
+        <h2 className="lg:text-xl text-md mb-3">
+          {editingUser ? "Kullanıcıyı Düzenle" : "Yeni Kullanıcı Ekle"}
+        </h2>
+        <div className="flex lg:gap-3 gap-1 lg:text-md text-md ">
           <input
             type="text"
             placeholder="Adı Soyadı"
@@ -67,16 +103,19 @@ export default function UserManagement() {
             <option value="Admin">Admin</option>
           </select>
           <button
-            onClick={addUser}
-            className="flex items-center border border-darkdark-gray gap-2 bg-green-500 px-4 py-2 rounded-md hover:bg-green-600"
+            onClick={editingUser ? updateUser : addUser}
+            className="flex items-center border border-darkdark-gray gap-2 bg-green-500 lg:px-4 px-1 py-2 rounded-md hover:bg-green-600 "
           >
-            <FaUserPlus /> Ekle
+            <FaUserPlus /> {editingUser ? "Güncelle" : "Ekle"}
           </button>
         </div>
+        {emailError && (
+          <p className="text-red-500 text-sm mt-2">{emailError}</p>
+        )}
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full border-collapse border border-gray-700">
+        <table className="w-full border-collapse border border-gray-700 lg:text-[16px] text-[10px] md:text-[13px]">
           <thead>
             <tr className="bg-gray-800">
               <th className="p-3 border border-gray-700">Adı</th>
@@ -96,7 +135,10 @@ export default function UserManagement() {
                   <td className="p-3 border border-gray-700">{user.email}</td>
                   <td className="p-3 border border-gray-700">{user.role}</td>
                   <td className="p-5 border border-gray-700 flex gap-3">
-                    <button className="text-blue-400 hover:text-blue-300">
+                    <button
+                      onClick={() => editUser(user)}
+                      className="text-blue-400 hover:text-blue-300"
+                    >
                       <FaUserEdit />
                     </button>
                     <button

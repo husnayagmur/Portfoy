@@ -14,7 +14,7 @@ const page = () => {
         <div className="w-full max-w-4xl  md:w-full lg:p-6 md:p-4 p-1">
           <div className="w-full lg:h-full md:h-full overflow-hidden shadow-md">
             <iframe
-              className="w-full h-full"
+              className="w-full lg:h-full sm:h-full md:h-96"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345094013!2d144.95373531531568!3d-37.81627944202198!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577f5f692defd!2sFederation%20Square!5e0!3m2!1sen!2str!4v1695670123456!5m2!1sen!2str"
               allowFullScreen=""
               loading="lazy"

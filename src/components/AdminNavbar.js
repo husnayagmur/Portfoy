@@ -1,58 +1,68 @@
-"use client"
-import Link from 'next/link';
-import { FaChartPie, FaProjectDiagram, FaInfoCircle, FaEnvelope, FaUsers, FaBell, FaSearch, FaCog, FaHeadset, FaSignOutAlt } from 'react-icons/fa';
-const AdminNavbar = () => {
-    return (
-        <div className="max-w-7xl mx-auto h-full w-1/6 bg-gray-900 text-white flex flex-col shadow-xl items-center justify-center fixed border-r-2 border-yellow bg-black">
-          <nav className="flex flex-col gap-5 text-left">
-          <div className="w-full p-2 flex items-center bg-darkdark-gray rounded-lg">
-              <FaSearch size={27} className="text-light-gray pr-2" />
-              <input
-                type="text"
-                placeholder="Arama..."
-                className="w-full bg-transparent text-white placeholder-gray-400 focus:outline-none"
-              />
-            </div>
-            <Link href="/admin/dashboard" className="flex items-center gap-3 p-3 rounded-lg hover:bg-darkdark-gray hover:text-white transition">
-              <FaChartPie size={22} className="text-red-400" />
-              <span className="text-left">Genel İstatistikler</span>
-            </Link>
-            <Link href="/admin/project-management" className="flex items-center gap-3 p-3 rounded-lg hover:bg-darkdark-gray hover:text-white transition">
-              <FaProjectDiagram size={22} className="text-red-400" />
-              <span className="text-left">Proje Yönetimi</span>
-            </Link>
-            <Link href="/admin/about-management" className="flex items-center gap-3 p-3 rounded-lg hover:bg-darkdark-gray hover:text-white transition">
-              <FaInfoCircle size={22} className="text-red-400" />
-              <span className="text-left">Hakkımda Yönetimi</span>
-            </Link>
-            <Link href="/admin/contact-management" className="flex items-center gap-3 p-3 rounded-lg hover:bg-darkdark-gray hover:text-white transition">
-              <FaEnvelope size={22} className="text-red-400" />
-              <span className="text-left">İletişim Yönetimi</span>
-            </Link>
-            <Link href="/admin/user-management" className="flex items-center gap-3 p-3 rounded-lg hover:bg-darkdark-gray hover:text-white transition">
-              <FaUsers size={22} className="text-red-400" />
-              <span className="text-left">Kullanıcı Yönetimi</span>
-            </Link>
-            <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-darkdark-gray hover:text-white transition cursor-pointer">
-              <FaBell size={22} className="text-red-400" />
-              <span className="text-left">Bildirimler</span>
-            </div>
-            <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-darkdark-gray hover:text-white transition cursor-pointer">
-              <FaCog size={22} className="text-red-400" />
-              <span className="text-left">Ayarlar</span>
-            </div>
-            <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-darkdark-gray hover:text-white transition cursor-pointer">
-              <FaHeadset size={22} className="text-red-400" />
-              <span className="text-left">Destek</span>
-            </div>
-            <Link href="/" className="flex items-center gap-3 p-3 rounded-lg hover:bg-darkdark-gray hover:text-white transition">
-              <FaSignOutAlt size={22} className="text-red-400" />
-              <span className="text-left">Çıkış Yap</span>
-            </Link>
-          </nav>
-        </div>
-    
-      );
-}
+"use client";
+import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { FaChartPie, FaProjectDiagram, FaInfoCircle, FaEnvelope, FaUsers, FaBell, FaSearch, FaSignOutAlt, FaBars, FaTimes } from "react-icons/fa";
 
-export default AdminNavbar
+const AdminNavbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  return (
+    <>
+      <div className="lg:hidden text-white text-2xl p-2 fixed top-0 left-0 z-50 bg-gray-900 shadow-md w-full bg-black border-b cursor-pointer flex items-center justify-start">
+        <FaBars size={28} onClick={() => setIsMenuOpen(true)} />
+      </div>
+      <div className={`bg-gray-900 text-white shadow-xl border-yellow bg-black fixed top-0 left-0 h-full z-50 w-64 
+                       flex flex-col items-start p-4 transform ${isMenuOpen ? "translate-x-0" : "-translate-x-full"} 
+                       lg:translate-x-0 transition-all duration-300 lg:w-1/6 lg:h-full lg:fixed lg:border-r-2`}>
+
+        <button onClick={() => setIsMenuOpen(false)} className="lg:hidden text-medium-gray text-xl pb-2 self-end">
+          <FaTimes />
+        </button>
+        <div className="flex items-center space-x-3 p-2 bg-darkdark-gray rounded-lg shadow-md w-full">
+          <Image src="/images/husnaY.png" alt="My image" width={60} height={60} className='rounded-full border' />
+          <div>
+            <h2 className="text-md font-semibold text-white">Hüsna Yağmur</h2>
+            <p className="text-[9px] text-gray-400">Yönetici | Son giriş: 1 saat önce</p>
+          </div>
+        </div>
+        <div className="lg:w-full mt-2 p-2 bg-darkdark-gray rounded-lg flex ">
+          <FaSearch className="text-light-gray pr-2 text-2xl" />
+          <input type="text" placeholder="Arama..." className="w-full bg-transparent text-white placeholder-gray-400 focus:outline-none " />
+        </div>
+        <nav className="flex flex-col gap-3 mt-3 w-full ">
+          <Link href="/admin/dashboard" className="flex items-center lg:p-5 p-3 gap-3 rounded-lg hover:bg-gray-800 transition">
+            <FaChartPie className="text-red-400 md:text-2xl text-xl" />
+            <span className="text-[16px]">Genel İstatistikler</span>
+          </Link>
+          <Link href="/admin/project-management" className="flex items-center lg:p-5 p-3 gap-3 rounded-lg hover:bg-gray-800 transition">
+            <FaProjectDiagram className="text-red-400 md:text-2xl text-xl" />
+            <span className="text-[16px]">Proje Yönetimi</span>
+          </Link>
+          <Link href="/admin/about-management" className="flex items-center lg:p-5 p-3 gap-3 rounded-lg hover:bg-gray-800 transition">
+            <FaInfoCircle className="text-red-400 md:text-2xl text-xl" />
+            <span className="text-[16px]">Hakkımda Yönetimi</span>
+          </Link>
+          <Link href="/admin/contact-management" className="flex items-center lg:p-5 p-3 gap-3 rounded-lg hover:bg-gray-800 transition">
+            <FaEnvelope className="text-red-400 md:text-2xl text-xl" />
+            <span className="text-[16px]">İletişim Yönetimi</span>
+          </Link>
+          <Link href="/admin/user-management" className="flex items-center lg:p-5 p-3 gap-3 rounded-lg hover:bg-gray-800 transition">
+            <FaUsers className="text-red-400 md:text-2xl text-xl" />
+            <span className="text-[16px]">Kullanıcı Yönetimi</span>
+          </Link>
+          <Link href="/admin/notifications" className="flex items-center lg:p-5 p-3 gap-3 rounded-lg hover:bg-gray-800 transition">
+            <FaBell className="text-red-400 md:text-2xl text-xl" />
+            <span className="text-[16px]">Bildirimler</span>
+          </Link>
+          <Link href="/" className="flex items-center lg:p-5 p-3 gap-3 rounded-lg hover:bg-gray-800 transition">
+            <FaSignOutAlt className="text-red-400 md:text-2xl text-xl" />
+            <span className="text-[16px]">Çıkış Yap</span>
+          </Link>
+        </nav>
+      </div>
+    </>
+  );
+};
+
+export default AdminNavbar;
